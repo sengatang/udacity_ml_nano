@@ -13110,7 +13110,8 @@ div#notebook {
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 检查你的Python版本</span>
 <span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="n">version_info</span>
 <span class="k">if</span> <span class="n">version_info</span><span class="o">.</span><span class="n">major</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">:</span>
-    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;请使用Python 3.x 来完成此项目&#39;</span><span class="p">)</span>
+    <span class="k">raise</span> <span class="n">E</span>
+    <span class="n">xception</span><span class="p">(</span><span class="s1">&#39;请使用Python 3.x 来完成此项目&#39;</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13319,7 +13320,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># TODO：从数据集中选择三个你希望抽样的数据点的索引</span>
@@ -13474,7 +13475,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[44]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># TODO：为DataFrame创建一个副本，用&#39;drop&#39;函数丢弃一个特征 # TODO： </span>
@@ -13482,7 +13483,7 @@ div#notebook {
 
 <span class="c1"># TODO：使用给定的特征作为目标，将数据分割成训练集和测试集</span>
 <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">new_data</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Delicatessen&#39;</span><span class="p">],</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">new_data</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Frozen&#39;</span><span class="p">],</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="c1"># TODO：创建一个DecisionTreeRegressor（决策树回归器）并在训练集上训练它</span>
 <span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeRegressor</span>
@@ -13508,7 +13509,7 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>0.9935775651228171
+<pre>0.2539734466970086
 </pre>
 </div>
 </div>
@@ -13536,8 +13537,8 @@ div#notebook {
 <p><strong>回答:</strong></p>
 <ul>
 <li>Frozen</li>
-<li>0.9935775651228171</li>
-<li>必要的，因为这个分数大于零且很高</li>
+<li>0.2539734466970086</li>
+<li>不太必要，因为分值比较低</li>
 </ul>
 
 </div>
@@ -13553,7 +13554,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[46]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 对于数据中的每一对特征构造一个散布矩阵</span>
@@ -13590,7 +13591,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[47]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
@@ -13606,7 +13607,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[47]:</div>
+    <div class="prompt output_prompt">Out[7]:</div>
 
 
 
@@ -13705,7 +13706,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[52]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
@@ -13722,13 +13723,13 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[52]:</div>
+    <div class="prompt output_prompt">Out[8]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x110337850&gt;</pre>
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1240cecd0&gt;</pre>
 </div>
 
 </div>
@@ -13803,7 +13804,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[54]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># TODO：使用自然对数缩放数据</span>
@@ -13854,7 +13855,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[55]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 展示经过对数变换后的样本数据</span>
@@ -13960,7 +13961,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[138]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 对于每一个特征，找到值异常高或者是异常低的数据点</span>
@@ -14748,7 +14749,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[139]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">outliers</span>
@@ -14764,7 +14765,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[139]:</div>
+    <div class="prompt output_prompt">Out[12]:</div>
 
 
 
@@ -14799,7 +14800,7 @@ div#notebook {
 <ul>
 <li>存在这种情况，一个数据点有多个类别中的异常值可能是因为比如 75 号，它的 Grocery 可能包括了 Detergents_Paper，所以一个数据有多个异常值特征</li>
 <li>应该要移除， k-means 对异常值比较敏感</li>
-<li>65, 66, 128, 154, 75 被移除因为在多个纬度都被认为是异常值</li>
+<li>65, 66, 128, 154, 75 被移除因为在多个纬度都被认为是异常值，而不删除所有的异常点因为这些异常点的占比比较大，删除后会损失很多有用信息，且除了上述异常点之外其余异常点只在一个纬度上有异常值，其余纬度上保持这有用信息，删除的话会导致信息缺失</li>
 </ul>
 
 </div>
@@ -14828,7 +14829,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[140]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># TODO：通过在good data上进行PCA，将其转换成6个维度</span>
@@ -14871,7 +14872,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[141]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span>
@@ -14887,7 +14888,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[141]:</div>
+    <div class="prompt output_prompt">Out[14]:</div>
 
 
 
@@ -14930,13 +14931,13 @@ div#notebook {
 <li>0.93129585</li>
 </ul>
 <ol>
-<li>dimension 1: Detergents_Paper, Grocery 和 Milk 咖啡馆</li>
-<li>dimension 2: Fresh 和 Delicatessen 和 frozen 卖吃的</li>
-<li>dimension 3: 不买 Fresh 且同时 买 Delicatessen， 熟食店</li>
-<li>dimension 4: 买 Frozen 且 买Delicatessen 卖冷冻商品与熟食</li>
+<li>dimension 1: Detergents_Paper, Grocery 和 Milk 权值绝对值较大，互相之间是正相关的，消费Detergents_Paper 意愿最大，其次是 Grocery 和 Milk，因此可能是咖啡馆</li>
+<li>dimension 2: Fresh 和 Delicatessen 和 frozen，权值绝对值较大，互相之间是正相关，消费 Fresh 的意愿最大，其次是 deli 和 frozen，应该是卖吃的的零售商</li>
+<li>dimension 3: Fresh 和 Delicatessen负相关，Delicatessen 和 Frozen 正相关，消费 Deli 和 Frozen 的意愿相对较大，而对 Fresh 则非常小，有可能是熟食店</li>
+<li>dimension 4: Frozen 和 Delicatessen负相关，倾向与消费 Frozen 和一点点 Detergents_Paper，不倾向与消费 Deli，可能是卖冷冻商品的店</li>
 </ol>
 <ul>
-<li>做出判断的依据是关注绝对值最大的几个特征</li>
+<li>做出判断的依据是关注绝对值最大的几个特征，这些值的正负号与值与值之间相对的正负相</li>
 </ul>
 
 </div>
@@ -14952,7 +14953,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[142]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">log_samples</span>
@@ -14968,7 +14969,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[142]:</div>
+    <div class="prompt output_prompt">Out[15]:</div>
 
 
 
@@ -15040,7 +15041,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[143]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 展示经过PCA转换的sample log-data</span>
@@ -15143,7 +15144,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[144]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># TODO：通过在good data上进行PCA，将其转换成两个维度</span>
@@ -15175,7 +15176,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[145]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 展示经过两个维度的PCA转换之后的样本log-data</span>
@@ -15257,7 +15258,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[146]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 可视化双标图</span>
@@ -15274,13 +15275,13 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[146]:</div>
+    <div class="prompt output_prompt">Out[19]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1208f5c10&gt;</pre>
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x12181d0a0&gt;</pre>
 </div>
 
 </div>
@@ -15369,7 +15370,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[152]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># TODO：在降维后的数据上使用你选择的聚类算法</span>
@@ -15454,7 +15455,7 @@ clusters: 6, score: 0.2803194337245228</code></pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[153]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 从已有的实现中展示聚类的结果</span>
@@ -15503,7 +15504,7 @@ clusters: 6, score: 0.2803194337245228</code></pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[154]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># TODO：反向转换中心点</span>
@@ -15590,6 +15591,139 @@ clusters: 6, score: 0.2803194337245228</code></pre>
 </div>
 
 </div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Fresh</th>
+      <th>Milk</th>
+      <th>Grocery</th>
+      <th>Frozen</th>
+      <th>Detergents_Paper</th>
+      <th>Delicatessen</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>440.000000</td>
+      <td>440.000000</td>
+      <td>440.000000</td>
+      <td>440.000000</td>
+      <td>440.000000</td>
+      <td>440.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>12000.297727</td>
+      <td>5796.265909</td>
+      <td>7951.277273</td>
+      <td>3071.931818</td>
+      <td>2881.493182</td>
+      <td>1524.870455</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>12647.328865</td>
+      <td>7380.377175</td>
+      <td>9503.162829</td>
+      <td>4854.673333</td>
+      <td>4767.854448</td>
+      <td>2820.105937</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>3.000000</td>
+      <td>55.000000</td>
+      <td>3.000000</td>
+      <td>25.000000</td>
+      <td>3.000000</td>
+      <td>3.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>3127.750000</td>
+      <td>1533.000000</td>
+      <td>2153.000000</td>
+      <td>742.250000</td>
+      <td>256.750000</td>
+      <td>408.250000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>8504.000000</td>
+      <td>3627.000000</td>
+      <td>4755.500000</td>
+      <td>1526.000000</td>
+      <td>816.500000</td>
+      <td>965.500000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>16933.750000</td>
+      <td>7190.250000</td>
+      <td>10655.750000</td>
+      <td>3554.250000</td>
+      <td>3922.000000</td>
+      <td>1820.250000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>112151.000000</td>
+      <td>73498.000000</td>
+      <td>92780.000000</td>
+      <td>60869.000000</td>
+      <td>40827.000000</td>
+      <td>47943.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -15606,8 +15740,8 @@ clusters: 6, score: 0.2803194337245228</code></pre>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>回答:</strong></p>
 <ul>
-<li>Segment 0: Fresh 和 Grocery 和 frozen 较多，应该是超市</li>
-<li>Segment 1: Grocery 和 Milk 占比很大，应该咖啡馆</li>
+<li>Segment 0: Fresh 和 Grocery 和 frozen 较多，但均低于平均值，应该是超市</li>
+<li>Segment 1: Grocery 和 Milk 与 Detergents_Paper 占比很大，且远超平均值，应该是咖啡馆</li>
 </ul>
 
 </div>
@@ -15627,7 +15761,7 @@ clusters: 6, score: 0.2803194337245228</code></pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[155]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 显示预测结果</span>
@@ -15691,8 +15825,12 @@ Sample point 2 predicted to be in Cluster 0
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>回答：</strong>
-针对超市可以修改 Fresh 和 Grocery 的派送，针对咖啡馆修改 Grocery 和 Mik 的派送，根据不同的消费种类在分类后的用户类中的占比来决定更改什么的派送</p>
+<p><strong>回答：</strong></p>
+<ul>
+<li>对于超市类的用户可以选取一部分来修改 Fresh 和 Grocery 的派送, 选取一部分进行其余分类的派送进行更改，同时保留一部分依旧进行每周5天的配送作为对照组，将前面两个组分别与第三个组进行比较，得出对于这个分类下的用户怎么样的配送方式会有积极的反馈。</li>
+<li>针对咖啡馆修改 Grocery，Mik，Detergents的派送，与上述过程进行类似的操作。</li>
+<li>对于每一种用户类型找出在这个用户类型下可以接受的配送调整分类是哪些从而进行配送的更改</li>
+</ul>
 
 </div>
 </div>
@@ -15711,7 +15849,7 @@ Sample point 2 predicted to be in Cluster 0
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[156]:</div>
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
@@ -15737,8 +15875,8 @@ Sample point 2 predicted to be in Cluster 0
 <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 <span class="n">score_no_cluster</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;不使用cluster特征的得分: </span><span class="si">%.4f</span><span class="s2">&quot;</span><span class="o">%</span><span class="k">sc</span>ore_no_cluster<span class="o">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;使用cluster特征的得分: </span><span class="si">%.4f</span><span class="s2">&quot;</span><span class="o">%</span><span class="k">sc</span>ore_with_cluster<span class="o">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;不使用cluster特征的得分: </span><span class="si">%.12f</span><span class="s2">&quot;</span><span class="o">%</span><span class="k">sc</span>ore_no_cluster<span class="o">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;使用cluster特征的得分: </span><span class="si">%.12f</span><span class="s2">&quot;</span><span class="o">%</span><span class="k">sc</span>ore_with_cluster<span class="o">)</span>
 </pre></div>
 
     </div>
@@ -15755,8 +15893,8 @@ Sample point 2 predicted to be in Cluster 0
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>不使用cluster特征的得分: 0.7241
-使用cluster特征的得分: 0.7241
+<pre>不使用cluster特征的得分: 0.724137931034
+使用cluster特征的得分: 0.724137931034
 </pre>
 </div>
 </div>
@@ -15769,7 +15907,7 @@ Sample point 2 predicted to be in Cluster 0
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>回答：</strong> 
-并没有什么差别，region 和这个 cluster 并不相关</p>
+尽管在这个例子中并没有什么差别，但是 clustering 应该会使结果提升，可以使用 unsupervised learning 得出的 label 来对 supervised learning 进行增纬。</p>
 
 </div>
 </div>
@@ -15785,7 +15923,7 @@ Sample point 2 predicted to be in Cluster 0
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[157]:</div>
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 根据‘Channel‘数据显示聚类的结果</span>
@@ -15852,6 +15990,19 @@ Sample point 2 predicted to be in Cluster 0
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
 </div>
     </div>
   </div>

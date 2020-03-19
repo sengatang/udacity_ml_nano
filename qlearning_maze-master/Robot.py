@@ -46,7 +46,7 @@ class Robot(object):
             pass
         else:
             # TODO 2. Update parameters when learning
-            self. epsilon *= 0.96
+            self. epsilon = self. epsilon * 0.9
 
         return self.epsilon
 

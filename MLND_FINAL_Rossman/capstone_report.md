@@ -1,8 +1,7 @@
-# 机器学习纳米学位
-##毕业项目
-Senga 优达学城 </br>
 
-2020年3月11日
+
+#毕业项目
+​																	Senga 优达学城 2020年3月11日
 
 
 ## I. 问题的定义
@@ -23,7 +22,7 @@ Senga 优达学城 </br>
 
 Rossmann Sales 是一个 regression 的 supervised learning，需要根据过去的销售数据提炼出 feature 然后进行预测。
 
-预计使用 lightgbm 模型，每一步骤将会在分析部分具体展开：
+预计使用 LGB 与 XGB 模型，每一步骤将会在分析部分具体展开：
 
 - 首先要进行数据探索，探索 feature 的关系
 - 数据预处理
@@ -49,22 +48,24 @@ kaggle 给出的评价指标为 Root Mean Square Percentage Error (RMSPE),
 
 #### 数据解释
 
-- **Id** - 一个代表着 (Store, Date) 的 id
-- **Store** - 一个商店的唯一 id
-- **Sales** - 给定一天内的营业额
-- **Customers** - 给定一天内的客户数量
-- **Open** - 商店是否开门 0 = closed, 1 = open
-- **StateHoliday** - 代表着国家假日，一般来说绝大多数商店都会在国家假日关门。注意学校在 public holiday 和周末都会关门。a = public holiday, b = Easter holiday, c = Christmas, 0 = None
-- **SchoolHoliday** - 代表 (Store, Date) 是否有被学校放假所影响
-- **StoreType** - 四种不同的商店类型: a, b, c, d
-- **Assortment** - 商店的 assortment 等级: a = basic, b = extra, c = extended
-- **CompetitionDistance** - 最近的竞争对手的距离，以米为单位
-- **CompetitionOpenSince[Month/Year]** - 竞争对手开张的年/月
-- **Promo** - 代表当日商店是否有打折
-- **Promo2** - 持续性的打折 0 = store is not participating, 1 = store is participating
-- **Promo2Since[Year/Week]** - 参与打折的年/周
-- **PromoInterval** - 打折间隔 E.g. "Feb,May,Aug,Nov" means each round starts in February, May, August, November of any given year for that store
-- 
+| name                                 | meaning                                                      |
+| ------------------------------------ | ------------------------------------------------------------ |
+| **Id**                               | 代表着 (Store, Date) 的 id                                   |
+| **Store**                            | 一个商店的唯一 id                                            |
+| **Sales**                            | 给定一天内的营业额                                           |
+| **Customers**                        | 给定一天内的客户数量                                         |
+| **Open**                             | 商店是否开门 0 = closed, 1 = open                            |
+| **StateHoliday**                     | 代表着国家假日，一般来说绝大多数商店都会在国家假日关门。注意学校在 public holiday 和周末都会关门。a = public holiday, b = Easter holiday, c = Christmas, 0 = None |
+| **SchoolHoliday**                    | 代表 (Store, Date) 是否有被学校放假所影响                    |
+| **StoreType**                        | 四种不同的商店类型: a, b, c, d                               |
+| **Assortment**                       | 商店的 assortment 等级: a = basic, b = extra, c = extended   |
+| **CompetitionDistance**              | 最近的竞争对手的距离，以米为单位                             |
+| **CompetitionOpenSince[Month/Year]** | 竞争对手开张的年/月                                          |
+| **Promo**                            | 代表当日商店是否有打折                                       |
+| **Promo2**                           | 持续性的打折 0 = store is not participating, 1 = store is participating |
+| **Promo2Since[Year/Week]**           | 参与打折的年/周                                              |
+| **PromoInterval**                    | 打折间隔 E.g. "Feb,May,Aug,Nov" means each round starts in February, May, August, November of any given year for that store |
+|                                      |                                                              |
 
 #### 数据异常值
 
@@ -73,47 +74,45 @@ kaggle 给出的评价指标为 Root Mean Square Percentage Error (RMSPE),
   
 
 ### 探索性可视化
-#### 商店类型与营业额之间的关系
+#### 商店类型与营业额
 
 增加了一个参数 `SalesPerCustomer`， 进行可视化后得出 a 的总营业额和客户数量最高，d的平均顾客画的钱最高，b类的商店在各个表现上均较差。
 
-![image-20200319112749799](/Users/tangsijia/Library/Application Support/typora-user-images/image-20200319112749799.png)
+![image-20200320030430517](/Users/tangsijia/Library/Application Support/typora-user-images/image-20200320030430517.png)
 
-![image-20200319112852667](/Users/tangsijia/Library/Application Support/typora-user-images/image-20200319112852667.png)
 
-![image-20200319112909168](/Users/tangsijia/Library/Application Support/typora-user-images/image-20200319112909168.png)
 
-#### 分析工作日与销售额之间的关系
+#### 分析工作日与销售额
 
 发现周日销售额最少，周一销售额最多。可知周几对于销售额来说是有参考价值的。
 
-![image-20200319225413427](/Users/tangsijia/Library/Application Support/typora-user-images/image-20200319225413427.png)
+![image-20200320030445294](/Users/tangsijia/Library/Application Support/typora-user-images/image-20200320030445294.png)
 
-#### 打折分析
+#### 打折
 
-![image-20200319230252514](/Users/tangsijia/Library/Application Support/typora-user-images/image-20200319230252514.png)
+![image-20200320030503381](/Users/tangsijia/Library/Application Support/typora-user-images/image-20200320030503381.png)
 
-#### 节假日分析
+#### 节假日
 
-![image-20200319230259019](/Users/tangsijia/Library/Application Support/typora-user-images/image-20200319230259019.png)
+![image-20200320030516006](/Users/tangsijia/Library/Application Support/typora-user-images/image-20200320030516006.png)
 
-#### 商店 AssortMent 分析
+#### 商店 AssortMent 
 
 ![image-20200319230305225](/Users/tangsijia/Library/Application Support/typora-user-images/image-20200319230305225.png)
 
-#### 每月销量分析
+#### 每月/日销量
 
-![image-20200319230318845](/Users/tangsijia/Library/Application Support/typora-user-images/image-20200319230318845.png)
+![image-20200320030342823](/Users/tangsijia/Library/Application Support/typora-user-images/image-20200320030342823.png)
+
+#### ![image-20200320030327191](/Users/tangsijia/Library/Application Support/typora-user-images/image-20200320030327191.png)
+
+#### 竞争对手距离与(平均)销售额的关系
+
+![image-20200320033002483](/Users/tangsijia/Library/Application Support/typora-user-images/image-20200320033002483.png)
 
 #### 商店销售额分析
 
-一千多个商店 id 每家商店的平均销售额有所不同。
-
-![image-20200319230354686](/Users/tangsijia/Library/Application Support/typora-user-images/image-20200319230354686.png)
-
-#### 商店平均开门几率分析
-
-![image-20200319230538867](/Users/tangsijia/Library/Application Support/typora-user-images/image-20200319230538867.png)
+![image-20200320033529232](/Users/tangsijia/Library/Application Support/typora-user-images/image-20200320033529232.png)
 
 ### 算法和技术
 实现模型的 training error 足够小，且算法的自由度不能过大。真实数据存在很多的噪声，需要在数据处理部分进行清除。
@@ -126,7 +125,7 @@ kaggle 给出的评价指标为 Root Mean Square Percentage Error (RMSPE),
 
 ![Image result for gbdt pseudocode](https://media.springernature.com/original/springer-static/image/chp%3A10.1007%2F978-3-319-46257-8_15/MediaObjects/420505_1_En_15_Figa_HTML.gif)
 
-具体的采用 **XGBoost 算法**：
+#### **XGBoost**：
 
 作为GBDT的高效实现，XGBoost是一个上限特别高的算法，因此在算法竞赛中比较受欢迎。简单来说，对比原算法GBDT，XGBoost主要从下面三个方面做了优化：
 
@@ -147,9 +146,13 @@ kaggle 给出的评价指标为 Root Mean Square Percentage Error (RMSPE),
    - 对于缺失值的特征，通过枚举所有缺失值在当前节点是进入左子树还是右子树来决定缺失值的处理方式。
    - 算法本身加入了L1和L2正则化项，可以防止过拟合，泛化能力更强。
 
-   
+#### **LightGBM**
 
-还采用了 linear regression 和 decisiontree 作为基础模型进行比较，同时尝试了 LGB 算法，但是效果不尽如人意。选择 XGboost 的原因也是因为在 google 的 colab 上可以直接使用 GPU 进行训练。
+LightGBM 是一个梯度 boosting 框架，使用基于学习算法的决策树。它可以说是分布式的，高效的，有以下优势：更快的训练效率，低内存使用，更高的准确率，支持并行化学习，可处理大规模数据。
+
+#### **其他**
+
+另外还采用了 linear regression 和 decisiontree 作为基础模型进行比较，同时尝试了 LGB 算法，但是效果不尽如人意。选择 XGboost 的原因也是因为在 google 的 colab 上可以直接使用 GPU 进行训练。
 
 对于数据进行了商店每个星期日的销售额，商店类型对销售额的影响，连续月的销售额变化，节假日的销售额变化，对于每个商店种类的用户平均购买力进行分析。同时加入了以商店 id 为基准的信息分析。
 
@@ -179,18 +182,17 @@ kaggle 给出的评价指标为 Root Mean Square Percentage Error (RMSPE),
 
 4. #### 查看 heatmap
 
-   ![image-20200319235016577](/Users/tangsijia/Library/Application Support/typora-user-images/image-20200319235016577.png)
-
-   
+   ![image-20200320040429133](/Users/tangsijia/Library/Application Support/typora-user-images/image-20200320040429133.png)
 
 ### 执行过程
-1. #### 算法比较
+1. #### 初始算法比较
 
-   使用了 linear regression 和 decisiontree 
-
-   ![image-20200319235045833](/Users/tangsijia/Library/Application Support/typora-user-images/image-20200319235045833.png)
-
-   ![image-20200319235054874](/Users/tangsijia/Library/Application Support/typora-user-images/image-20200319235054874.png)
+   | Model            | Initial RMSPE |
+   | :--------------- | ------------- |
+   | LinearRegression | 0.385         |
+   | DecisionTree     | 0.322         |
+   | XGB              | 0.345         |
+   | LGB              | 0.317         |
 
 2. #### gridsearch 的调参数
 
@@ -199,35 +201,81 @@ kaggle 给出的评价指标为 Root Mean Square Percentage Error (RMSPE),
    - 在基准模型的基础上使用了 GridSearch 进行控制变量地参数调整，最后选择了
 
      ```python
-     max_depth=10
-     learning_rate=0.03
-     colsample_bytree=0.7
-     subsample=0.9
+     LGBMRegressor(bagging_fraction=0.9, boosting_type='gbdt', class_weight=None,
+                   colsample_bytree=0.8, feature_fraction=0.8,
+                   importance_type='split', learning_rate=0.1, max_depth=-1,
+                   min_child_samples=20, min_child_weight=0.01, min_split_gain=0.0,
+                   n_estimators=7263, n_jobs=-1, num_leaves=144,
+                   objective='regression', random_state=49, reg_alpha=0.01,
+                   reg_lambda=0.001, silent=True, subsample=0.8,
+                   subsample_for_bin=200000, subsample_freq=1)
      ```
 
-   - LGB 模型的 rmspe 最后卡在了  0.14 因此没有继续进行下去
+     ```python
+     XGBRegressor(base_score=0.5, booster='gbtree', colsample_bylevel=1,
+                  colsample_bynode=1, colsample_bytree=0.7, gamma=0,
+                  importance_type='gain', learning_rate=0.03, max_delta_step=0,
+                  max_depth=10, min_child_weight=1, missing=None, n_estimators=2108,
+                  n_jobs=1, nthread=None, objective='reg:squarederror',
+                  random_state=0, reg_alpha=0, reg_lambda=1, scale_pos_weight=1,
+                  seed=None, silent=None, subsample=0.9, tree_method='gpu_hist',
+                  verbosity=1)
+     ```
 
-3. #### 进行预测找出需要执行的 best_iteration
+     
 
-   - ![image-20200319235433208](/Users/tangsijia/Library/Application Support/typora-user-images/image-20200319235433208.png)
+3. #### 进行预测
 
-4. #### 进行预测
+   XGB 预测结果
+
+   ![image-20200320043408184](/Users/tangsijia/Library/Application Support/typora-user-images/image-20200320043408184.png)
+
+   LGB 预测结果
+
+   ![image-20200320043806175](/Users/tangsijia/Library/Application Support/typora-user-images/image-20200320043806175.png)
 
 ### 完善
+
 #### 增加一些以商店 id 为基准的 feature
 
-观察发现以商店 id 为基准下有很多数据是有参考价值的，因此加入 feature 中，实验结果进步很大
+观察发现以商店 id 为基准下有很多数据是有参考价值的，因此加入 feature 中，实验结果进步很大，在 feature importance 中可发现占比还是比较大的。
 
 
 ## IV. 结果
 ### 模型的评价与验证
-- ![image-20200319235803967](/Users/tangsijia/Library/Application Support/typora-user-images/image-20200319235803967.png)_
+
+#### **XGB**
+
+Final Train Results
+
+![image-20200319235803967](/Users/tangsijia/Library/Application Support/typora-user-images/image-20200319235803967.png)
+
+##### XGB 的 fature important
+
+![image-20200320023322670](/Users/tangsijia/Library/Application Support/typora-user-images/image-20200320023322670.png)
+
+#### **LGB**
+
+![image-20200320043940298](/Users/tangsijia/Library/Application Support/typora-user-images/image-20200320043940298.png)
+
+![image-20200320044112101](/Users/tangsijia/Library/Application Support/typora-user-images/image-20200320044112101.png)
+
+
 
 ### 合理性分析
-综合各个参数的优化，发现 max_depth 为 10，learning_rate 为 0.03，colsample_bytree为0.7， subsample为0.9，n_estimators 为 2108 时表现最佳
 
+#### XGB
+
+![image-20200320043902198](file:///Users/tangsijia/Library/Application%20Support/typora-user-images/image-20200320043902198.png?lastModify=1584650469)
+
+#### LGB
+
+![image-20200320044151246](/Users/tangsijia/Library/Application Support/typora-user-images/image-20200320044151246.png)
+
+其中 XGB 符合项目要求，且表现较好
 
 ## V. 项目结论
+
 
 
 ### 结果可视化
@@ -237,9 +285,10 @@ kaggle 给出的评价指标为 Root Mean Square Percentage Error (RMSPE),
 
 ### 对项目的思考
 
-- 对数据的处理占很大一部分的因素
+- 对于这些销售额的预测来说，数据处理占很大一部分的比重，将 raw data 和处理过的 data 放入模型中训练可以得出非常不同的结果。数据预处理非常重要。
+- 刚开始做的的时候不知道从何下手，代码也是乱七八糟，应该早点开始的其实。
 
 
 ### 需要作出的改进
-- 可将优化后的 feature 作用到 LGB 模型上
+- 可以尝试使用神经网络或者 enbedding 来实现
 

@@ -40,7 +40,11 @@ kaggle 给出的评价指标为 Root Mean Square Percentage Error (RMSPE),
 - $\hat{y_i}$ 代表对应的 prediction
 - 任何 0 sales 在评分中都会被忽略
 
+用RMSPE作为评估销售预测的误差，在 RMSE 的基础上，令真实值与预测值之差再除以真实值，形成一个比例。
 
+RMSPE 更贴近误差的概念。而相比于 MSE 和 RMSE， RMSPE 计算的是一个误差率，这样就避免了真实值之间大小的不同而对误差产生的影响。 
+
+RMSPE 的缺点是，如果预测值是真实值的两倍以上，则 RMSPE 取值可能就会非常大，失去了评估的意义。所以理论上， RMSPE的取值范围是 0 到正无穷
 
 ## II. 分析
 
@@ -125,13 +129,27 @@ kaggle 给出的评价指标为 Root Mean Square Percentage Error (RMSPE),
 
 ![Image result for gbdt pseudocode](https://media.springernature.com/original/springer-static/image/chp%3A10.1007%2F978-3-319-46257-8_15/MediaObjects/420505_1_En_15_Figa_HTML.gif)
 
+
+
+
+
+
+
 #### **XGBoost**：
+
+该算法思想是不断地添加树，不断地进行特征分裂来生长一棵树，每次添加一个树，其实是学习一个新函数，去拟合上次预测的残差。当我们训练完成得到 k 棵树，我们要预测一个样本的分数，其实就是根据这个样本的特征，在每棵树中会落到对应的一个叶子节点，每个叶子节点就对应一个分数，最后只需要将每棵树对应的分数加起来就是该样本的预测值。
+
+![image-20200320181203470](/Users/tangsijia/Library/Application Support/typora-user-images/image-20200320181203470.png)
+
+目标函数如下：
+
+![image-20200320181437008](/Users/tangsijia/Library/Application Support/typora-user-images/image-20200320181437008.png)
 
 作为GBDT的高效实现，XGBoost是一个上限特别高的算法，因此在算法竞赛中比较受欢迎。简单来说，对比原算法GBDT，XGBoost主要从下面三个方面做了优化：
 
 1. 算法本身的优化：
 
-   - 在算法的弱学习器模型选择上，对比GBDT只支持决策树，还可以直接很多其他的弱学习器。
+   在算法的弱学习器模型选择上，对比GBDT只支持决策树，还可以直接很多其他的弱学习器。
 
    - 在算法的损失函数上，除了本身的损失，还加上了正则化部分。
    - 在算法的优化方式上，GBDT的损失函数只对误差部分做负梯度（一阶泰勒）展开，而XGBoost损失函数对误差部分做二阶泰勒展开，更加准确。
@@ -146,17 +164,21 @@ kaggle 给出的评价指标为 Root Mean Square Percentage Error (RMSPE),
    - 对于缺失值的特征，通过枚举所有缺失值在当前节点是进入左子树还是右子树来决定缺失值的处理方式。
    - 算法本身加入了L1和L2正则化项，可以防止过拟合，泛化能力更强。
 
+   
+
 #### **LightGBM**
 
 LightGBM 是一个梯度 boosting 框架，使用基于学习算法的决策树。它可以说是分布式的，高效的，有以下优势：更快的训练效率，低内存使用，更高的准确率，支持并行化学习，可处理大规模数据。
 
 #### **其他**
 
-另外还采用了 linear regression 和 decisiontree 作为基础模型进行比较，同时尝试了 LGB 算法，但是效果不尽如人意。选择 XGboost 的原因也是因为在 google 的 colab 上可以直接使用 GPU 进行训练。
+另外还采用了 linear regression 和 decisiontree 作为基础模型进行比较，同时尝试了 LGB 算法，但是不知道出于什么原因效果不尽如人意。选择 XGboost 的原因也是因为在 google 的 colab 上可以直接使用 GPU 进行训练。
 
 对于数据进行了商店每个星期日的销售额，商店类型对销售额的影响，连续月的销售额变化，节假日的销售额变化，对于每个商店种类的用户平均购买力进行分析。同时加入了以商店 id 为基准的信息分析。
 
+#### **基准目标**
 
+设置基准为 private leaderboard 的 top 10%，对于测试集rmpse为 0.11773
 
 
 ## III. 方法
@@ -185,7 +207,19 @@ LightGBM 是一个梯度 boosting 框架，使用基于学习算法的决策树�
    ![image-20200320040429133](/Users/tangsijia/Library/Application Support/typora-user-images/image-20200320040429133.png)
 
 ### 执行过程
-1. #### 初始算法比较
+1. #### 划分验证集
+
+   由于预测是有时间性的，所以将所给的 train 集按照日期排序，然后划分最后一部分为验证集来验证模型准确度。
+
+2. #### 选用 Feature
+
+   通过数据探索部分暂时选定的 categorial features 为：
+
+   ```python
+   'Day', 'DayOfYear', 'Store', 'DayOfWeek', 'PromoOpen', 'CompetitionDistance', 'AvgSalePerStore', 'ShopAvgOpen', 'PromoShopSales', 'WeekOfYear', 'Promo', 'Year', 'Month', 'StoreType'
+   ```
+
+3. #### 初始算法比较
 
    | Model            | Initial RMSPE |
    | :--------------- | ------------- |
@@ -194,7 +228,7 @@ LightGBM 是一个梯度 boosting 框架，使用基于学习算法的决策树�
    | XGB              | 0.345         |
    | LGB              | 0.317         |
 
-2. #### gridsearch 的调参数
+4. #### gridsearch 的调参数
 
    - 项目实现过程中使用了 LGB 与 XGBoost 算法
 
@@ -224,7 +258,7 @@ LightGBM 是一个梯度 boosting 框架，使用基于学习算法的决策树�
 
      
 
-3. #### 进行预测
+5. #### 进行预测
 
    XGB 预测结果
 
@@ -290,5 +324,5 @@ Final Train Results
 
 
 ### 需要作出的改进
-- 可以尝试使用神经网络或者 enbedding 来实现
+- 可以尝试使用神经网络或者  Entity Embedding 来实现
 

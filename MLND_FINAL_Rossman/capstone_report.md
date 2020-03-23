@@ -326,3 +326,11 @@ Final Train Results
 ### 需要作出的改进
 - 可以尝试使用神经网络或者  Entity Embedding 来实现
 
+## Vi. 引用
+
+1. https://zhuanlan.zhihu.com/p/34618178
+2. https://bacterous.github.io/2018/09/13/LightGBM%E4%BD%BF%E7%94%A8/
+3. https://zhuanlan.zhihu.com/p/26214650
+4. https://www.kaggle.com/elenapetrova/time-series-analysis-and-forecasts-with-prophet
+5. https://www.cnblogs.com/bjwu/p/9307344.html
+
